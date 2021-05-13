@@ -1,0 +1,483 @@
+// Variables and mixins
+@import 'common/colors';
+@import 'common/breakpoints';
+
+// Header/main layout stuff
+@import 'common/layout';
+@import 'common/styles';
+
+// --------------------
+// GENERAL
+// --------------------
+
+header {
+  a {
+    margin: auto;
+    width: 200px !important;
+    color: transparent;
+
+    &::before {
+      content: "Download CV" !important;
+      font-weight: 400;
+      color: $space-cadet;
+    }
+  }
+}
+
+main {
+  background-color: white;
+  padding: 1cm;
+
+  display: grid;
+  grid-template-rows: 3cm 3.2cm auto;
+  grid-template-columns: 3fr 5fr;
+  grid-template-areas:
+    "name sections"
+    "links sections"
+    "skills sections";
+
+  align-items: unset;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div[name] {
+    grid-area: name;
+  }
+
+  div[links] {
+    grid-area: links;
+  }
+
+  div[skills] {
+    grid-area: skills;
+  }
+
+  div[sections] {
+    grid-area: sections;
+
+    border-left: 1px solid rgba(0, 0, 0, 0.19);
+
+    flex: 5;
+    padding-left: 1.2cm;
+    padding-right: 0.2cm;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+*[pill] {
+  display: block;
+  position: relative;
+  width: calc(100% - 6px);
+  max-width: 160px;
+  height: 30px;
+
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: gray;
+  font-weight: 500;
+
+  border: 3px solid white;
+  border-radius: calc(36px / 2);
+  background-color: white;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: calc(36px / 2);
+  }
+
+  @for $percentage from 0 to 101 {
+    &[percentage-#{$percentage}]::before {
+      width: $percentage * 1%;
+
+      @if $percentage < 30 {
+        background-color: rgb(255, 142, 142);
+        // Junky hack for @media print
+        box-shadow: inset 0 0 0 1000px rgb(255, 142, 142);
+      } @else if $percentage < 70 {
+        background-color: rgb(255, 199, 142);
+        // Junky hack for @media print
+        box-shadow: inset 0 0 0 1000px rgb(255, 199, 142);
+      } @else if $percentage < 101 {
+        background-color: rgb(142, 255, 145);
+        // Junky hack for @media print
+        box-shadow: inset 0 0 0 1000px rgb(142, 255, 145);
+      } @else {
+        background-color: none;
+      }
+    }
+  }
+}
+
+*[shadow] {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+div[name] > h1 {
+  font-weight: 400;
+  text-align: center;
+}
+
+*[divider] {
+  display: block;
+  width: 80%;
+  height: 0;
+  border-bottom: 1px solid darken(white, 10%);
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+
+div[links] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // > div {
+  //   width: 60%;
+  // }
+
+  a {
+    // width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: black;
+
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    p {
+      margin: 0;
+      width: calc(200% - 20px - 5px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 20px;
+      text-align: start;
+    }
+  }
+}
+
+div[skills] {
+  text-align: center;
+
+  div[title] {
+    width: calc(30px + 4.2cm) !important;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5cm;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.2cm;
+    }
+
+    h2 {
+      color: black;
+      margin: 0;
+      font-weight: 400;
+      text-align: start;
+      font-size: 1.6em;
+      line-height: 30px;
+      width: 4cm;
+    }
+  }
+
+  div[set] {
+    h2 {
+      font-weight: 400;
+    }
+
+    div[skill] {
+      margin-bottom: 0.4cm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      p {
+        margin: 0;
+        font-weight: 300;
+      }
+
+      *[pill] {
+        width: calc(90% - 6px);
+        height: 24px;
+        margin: auto;
+      }
+    }
+  }
+}
+
+div[sections] > section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: justify;
+  margin-bottom: 0.5cm;
+
+  div[title] {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5cm;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.2cm;
+    }
+
+    h2 {
+      color: black;
+      margin: 0;
+      font-weight: 400;
+      text-align: start;
+      font-size: 1.6em;
+      line-height: 30px;
+      width: 4cm;
+    }
+  }
+
+  div[content] {
+    width: 100%;
+
+    p {
+      text-align: justify;
+      font-size: 0.8em;
+      margin-bottom: 0.2cm;
+    }
+
+    div {
+      width: 100%;
+      margin-bottom: 0.3cm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      h3[title] {
+        color: black;
+        font-weight: 400;
+        font-style: italic;
+        text-align: start;
+        margin: 0;
+      }
+
+      div[info] {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8em;
+        justify-content: space-between;
+
+        p {
+          margin: 0;
+
+          a {
+            text-decoration: none;
+            color: lighten(black, 40%);
+          }
+        }
+
+        p[date] {
+          margin-right: 0.2cm;
+        }
+      }
+
+      div[notes] {
+        margin-left: 0.5cm;
+        width: calc(100% - 0.5cm);
+
+        p {
+          margin: 0;
+          margin-bottom: 0.1cm;
+
+          &:first-child {
+            margin-top: 0.2cm;
+            margin-bottom: 0.2cm;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------------------
+// DESKTOP
+// --------------------
+@media screen and (min-width: 768px) {
+  header {
+    a {
+      transform: translateY(24px);
+      transition: all ease-in-out 100ms;
+
+      &:hover {
+        transform: translateY(24px) scale(1.1);
+      }
+    }
+  }
+
+  main {
+    width: calc(90vw - 2cm);
+    min-height: calc(90vw * 27 / 21);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 6px;
+  }
+
+  *[mobile] {
+    display: none !important;
+  }
+
+  *[name] > h1 {
+    font-size: 2em;
+  }
+
+  *[sections] {
+    margin-top: 0.6cm;
+  }
+}
+
+@media screen and (min-width: 25cm) {
+  main {
+    width: 21cm;
+    min-height: 27cm;
+  }
+}
+
+// --------------------
+// MOBILE
+// --------------------
+
+@media screen and (max-width: 767px) {
+  header {
+    height: 64px;
+    justify-content: center;
+    background-color: white;
+
+    a {
+      transform: translateY(24px);
+      font-size: 0.8em;
+    }
+  }
+
+  main {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "name"
+      "links"
+      "sections"
+      "skills";
+
+    padding-top: 0;
+  }
+
+  *[pill] {
+    height: 18px !important;
+
+    line-height: 18px;
+  }
+
+  div[name] {
+    grid-area: name;
+
+    // h1 {
+    //   font-size: 1.2em;
+    // }
+  }
+
+  div[links] {
+    grid-area: links;
+
+    a {
+      max-width: 160px;
+    }
+  }
+
+  div[skills] {
+    grid-area: skills;
+  }
+
+  div[sections] {
+    grid-area: sections;
+    padding-left: 0.2cm !important;
+    border: none !important;
+    margin-top: 0.5cm;
+  }
+}
+
+// --------------------
+// PRINT
+// --------------------
+
+@media print {
+  * {
+    transition: none !important;
+  }
+
+  header {
+    display: none;
+  }
+
+  main {
+    width: 100vw;
+    min-height: 100vh;
+    height: 200vh;
+    padding: 0;
+  }
+
+  *[mobile] {
+    display: none !important;
+  }
+
+  *[name] > h1 {
+    font-size: 2em;
+  }
+
+  *[skills] *[break] {
+    margin-top: 3cm;
+  }
+
+  *[sections] {
+    margin-top: 0.6cm;
+  }
+
+  *[sections] *[break] {
+    margin-top: 1cm;
+  }
+}
