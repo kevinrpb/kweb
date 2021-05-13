@@ -1,0 +1,27 @@
+i[role='icon'] {
+	width: 30px;
+	height: 30px;
+
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+i[role='icon'].at {
+  -webkit-mask-image: url('img/at-sign.svg');
+  mask-image: url('img/at-sign.svg');
+}
+
+i[role='icon'].gh {
+  -webkit-mask-image: url('img/github.svg');
+  mask-image: url('img/github.svg');
+}
+
+i[role='icon'].in {
+  -webkit-mask-image: url('img/linkedin.svg');
+  mask-image: url('img/linkedin.svg');
+}
+
+i[role='icon'].cv {
+  -webkit-mask-image: url('img/file-text.svg');
+  mask-image: url('img/file-text.svg');
+}

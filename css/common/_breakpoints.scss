@@ -1,0 +1,32 @@
+@mixin breakpoint($point) {
+  @if $point == xxl {
+    @media only screen and (min-width: 1400px) {
+      @content;
+    }
+  } @else if $point == xl {
+    /* Extra large devices (large laptops and desktops) */
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  } @else if $point == lg {
+    /* Large devices (laptops/desktops) */
+    @media only screen and (min-width: 992px) {
+      @content;
+    }
+  } @else if $point == md {
+    /* Medium devices (landscape tablets) */
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == sm {
+    /* Small devices (portrait tablets and large phones) */
+    @media only screen and (min-width: 600px) {
+      @content;
+    }
+  } @else if $point == smonly {
+    /* Extra small devices (phones) */
+    @media only screen and (max-width: 600px) {
+      @content;
+    }
+  }
+}

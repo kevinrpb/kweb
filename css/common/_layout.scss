@@ -1,0 +1,43 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+  width: 100%;
+
+  @include breakpoint(md) {
+    height: 7em;
+  }
+}
+
+main {
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include breakpoint(md) {
+    width: 80vw;
+    transform: translateY(-2em);
+  }
+
+  @include breakpoint(lg) {
+    width: 65vw;
+  }
+
+  @include breakpoint(xl) {
+    width: 60vw;
+  }
+
+  @include breakpoint(xxl) {
+    width: 50vw;
+  }
+}
